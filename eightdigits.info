@@ -1,0 +1,5 @@
+name = 8digits Module for drupal
+description =  Adds 8digits Monitoring Platform javascript tracking code to all your site's pages.
+core = 6.x
+package = Statistics
+version = "6.x-3.3+15-dev"

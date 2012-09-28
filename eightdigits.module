@@ -1,0 +1,33 @@
+<?php
+
+function eightdigits_menu() {
+  $items['admin/settings/eightdigits'] = array(
+    'title' => '8digits Monitoring Platform',
+    'description' => 'Configure the settings used to generate your 8digits Monitoring tracking code.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('eightdigits_admin_settings_form'),
+    'access arguments' => array('administer 8digits monitoring'),
+    'file' => 'eightdigits.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+    );
+
+  return $items;
+}
+
+function eightdigits_init() {
+  global $user;
+  $id = variable_get('eightdigits_account', '');
+  echo '<script type="text/javascript">';
+  echo 'var _trackingCode =' ;
+  echo ' "';
+  echo $id;
+  echo '"';
+  echo ";";
+  echo  '(function() {
+    var wa = document.createElement("script"); wa.type = "text/javascript"; wa.async = true;
+    wa.src = ("https:" == document.location.protocol ? "https:// " : "http://") + "tr2-static.8digits.com/js/wm.js?"+ Math.random();
+    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(wa, s);
+  })();
+</script>';
+
+}
